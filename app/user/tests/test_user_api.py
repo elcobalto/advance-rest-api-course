@@ -20,7 +20,7 @@ def create_user(**params):
 
 
 class PublicUserApiTests(TestCase):
-    """Test the public feature of the user API."""
+    """Test the public features of the user API."""
 
     def setUp(self):
         self.client = APIClient()
@@ -77,7 +77,7 @@ class PublicUserApiTests(TestCase):
 
         payload = {
             'email': user_details['email'],
-            'password': user_details['password']
+            'password': user_details['password'],
         }
         res = self.client.post(TOKEN_URL, payload)
 
@@ -127,7 +127,7 @@ class PrivateUserApiTests(TestCase):
             name='Test Name',
         )
         self.client = APIClient()
-        self.client.force_authentication(user=self.user)
+        self.client.force_authenticate(user=self.user)
 
     def test_retrieve_profile_success(self):
         """Test retrieving profile for logged in user."""
